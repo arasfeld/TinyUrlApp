@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "tinyurlapp.client", "tinyurlapp.client\tinyurlapp.client.esproj", "{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyUrlApp.Server", "TinyUrlApp.Server\TinyUrlApp.Server.csproj", "{82F69AA4-1D67-488A-931C-B4E84436831E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54F0E51-FA5A-06CA-FA9B-A95502D74A51}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{82F69AA4-1D67-488A-931C-B4E84436831E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F69AA4-1D67-488A-931C-B4E84436831E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F69AA4-1D67-488A-931C-B4E84436831E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F69AA4-1D67-488A-931C-B4E84436831E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48E63C59-A8D4-4C70-B67D-2848A5993E6F}
+	EndGlobalSection
+EndGlobal
