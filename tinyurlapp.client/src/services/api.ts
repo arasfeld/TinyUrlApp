@@ -8,6 +8,14 @@ export async function getUrls() {
   return [];
 }
 
+export async function getUrl(shortUrl: string) {
+  const response = await fetch(`${API_URL}/${shortUrl}`);
+  if (response.ok) {
+    return response.json();
+  }
+  return null;
+}
+
 export async function createUrl(longUrl: string, shortUrl?: string) {
   const response = await fetch(API_URL, {
     method: 'POST',

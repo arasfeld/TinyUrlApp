@@ -22,6 +22,17 @@ public class UrlController : ControllerBase
         return Ok(urls);
     }
 
+    [HttpGet("{shortUrl}")]
+    public ActionResult<UrlModel> Get(string shortUrl)
+    {
+        var url = _urlService.Get(shortUrl);
+        if (url == null) {
+            return NotFound();
+        }
+        url.ClickCount++;
+        return url;
+    }
+
     [HttpPost]
     public ActionResult<UrlModel> Create([FromBody] UrlModel urlModel)
     {

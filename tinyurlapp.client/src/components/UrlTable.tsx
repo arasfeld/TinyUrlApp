@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -14,9 +15,18 @@ interface Props {
   className?: string;
   items?: Url[];
   loading: boolean;
+  onSelect: (
+    shortUrl: string,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => Promise<void>;
 }
 
-export function UrlTable({ className, items, loading = false }: Props) {
+export function UrlTable({
+  className,
+  items,
+  loading = false,
+  onSelect,
+}: Props) {
   if (loading) {
     return <TypographyP>Loading...</TypographyP>;
   }
@@ -37,7 +47,14 @@ export function UrlTable({ className, items, loading = false }: Props) {
       <TableBody>
         {items.map((item) => (
           <TableRow key={item.shortUrl}>
-            <TableCell>{item.shortUrl}</TableCell>
+            <TableCell>
+              <Button
+                onClick={(event) => onSelect(item.shortUrl, event)}
+                variant="link"
+              >
+                {item.shortUrl}
+              </Button>
+            </TableCell>
             <TableCell className="text-left">{item.longUrl}</TableCell>
             <TableCell>{item.clickCount}</TableCell>
           </TableRow>

@@ -16,6 +16,11 @@ public class UrlService
         return _urlMappings;
     }
 
+    public UrlModel? Get(string shortUrl)
+    {
+        return _urlMappings.FirstOrDefault((url) => url.ShortUrl == shortUrl);
+    }
+
     public UrlModel Create(string longUrl, string? shortUrl)
     {
         var generatedShortUrl = GenerateShortUrl();

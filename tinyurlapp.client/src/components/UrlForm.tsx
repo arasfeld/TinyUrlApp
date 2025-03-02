@@ -28,6 +28,8 @@ export function UrlForm({ className, onSubmit }: Props) {
       setSubmitting(true);
       await onSubmit({ longUrl, shortUrl }, event);
       setSubmitting(false);
+      setLongUrl('');
+      setShortUrl('');
     },
     [longUrl, onSubmit, shortUrl]
   );
