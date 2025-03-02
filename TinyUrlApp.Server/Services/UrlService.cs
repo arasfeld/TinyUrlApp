@@ -26,7 +26,7 @@ public class UrlService
         var generatedShortUrl = GenerateShortUrl();
         var urlModel = new UrlModel
         {
-            ShortUrl = shortUrl ?? generatedShortUrl,
+            ShortUrl = string.IsNullOrWhiteSpace(shortUrl) ? generatedShortUrl : shortUrl,
             LongUrl = longUrl,
             ClickCount = 0
         };
