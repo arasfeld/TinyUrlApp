@@ -26,3 +26,10 @@ export async function createUrl(longUrl: string, shortUrl?: string) {
   });
   return response.json();
 }
+
+export async function deleteUrl(shortUrl: string) {
+  const response = await fetch(`${API_URL}/${shortUrl}`, {
+    method: 'DELETE',
+  });
+  return response.ok;
+}

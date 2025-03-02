@@ -44,4 +44,15 @@ public class UrlController : ControllerBase
         var createdUrl = _urlService.Create(urlModel.LongUrl, urlModel.ShortUrl);
         return Ok(createdUrl);
     }
+
+    [HttpDelete("{shortUrl}")]
+    public IActionResult Delete(string shortUrl)
+    {
+        var result = _urlService.Delete(shortUrl);
+        if (!result)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { TypographyH1 } from '@/components/ui/typography';
 import { UrlForm } from '@/components/UrlForm';
 import { UrlTable } from '@/components/UrlTable';
-import { createUrl, getUrls } from '@/services/api';
+import { createUrl, deleteUrl, getUrls } from '@/services/api';
 import { Url } from '@/types';
 
 function Index() {
@@ -17,6 +17,14 @@ function Index() {
     setUrls(response);
     setLoading(false);
   }, []);
+
+  const handleDelete = useCallback(
+    async (shortUrl: string) => {
+      await deleteUrl(shortUrl);
+      populateUrls();
+    },
+    [populateUrls]
+  );
 
   const handleSelect = useCallback(
     async (shortUrl: string) => {
@@ -42,7 +50,12 @@ function Index() {
       <TypographyH1>Tiny URL Service</TypographyH1>
       <div className="flex gap-18">
         <UrlForm className="max-w-sm" onSubmit={handleSubmit} />
-        <UrlTable items={urls} loading={loading} onSelect={handleSelect} />
+        <UrlTable
+          items={urls}
+          loading={loading}
+          onDelete={handleDelete}
+          onSelect={handleSelect}
+        />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -10,11 +11,16 @@ import {
 import { TypographyP } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 import type { Url } from '@/types';
+import { DeleteDialog } from './DeleteDialog';
 
 interface Props {
   className?: string;
   items?: Url[];
   loading: boolean;
+  onDelete: (
+    shortUrl: string,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => Promise<void>;
   onSelect: (
     shortUrl: string,
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -25,6 +31,7 @@ export function UrlTable({
   className,
   items,
   loading = false,
+  onDelete,
   onSelect,
 }: Props) {
   if (loading) {
@@ -42,6 +49,7 @@ export function UrlTable({
           <TableHead>Short URL</TableHead>
           <TableHead>Long URL</TableHead>
           <TableHead>Click Count</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -57,6 +65,15 @@ export function UrlTable({
             </TableCell>
             <TableCell className="text-left">{item.longUrl}</TableCell>
             <TableCell>{item.clickCount}</TableCell>
+            <TableCell>
+              <DeleteDialog
+                onDelete={(event) => onDelete(item.shortUrl, event)}
+              >
+                <Button size="icon" variant="outline">
+                  <Trash />
+                </Button>
+              </DeleteDialog>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -34,6 +34,17 @@ public class UrlService
         return urlModel;
     }
 
+    public bool Delete(string shortUrl)
+    {
+        var urlModel = _urlMappings.FirstOrDefault(u => u.ShortUrl == shortUrl);
+        if (urlModel != null)
+        {
+            _urlMappings.Remove(urlModel);
+            return true;
+        }
+        return false;
+    }
+
     private static string GenerateShortUrl()
     {
         return Guid.NewGuid().ToString()[..8];
