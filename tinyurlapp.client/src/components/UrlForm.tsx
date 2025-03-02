@@ -10,26 +10,30 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { Url } from '@/types';
 
-export function UrlForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
+interface Props {
+  className?: string;
+  onSubmit: (url: Url, event: FormEvent) => Promise<void>;
+}
+
+export function UrlForm({ className, onSubmit }: Props) {
   const [longUrl, setLongUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = useCallback(
     async (event: FormEvent) => {
       event.preventDefault();
-      // Handle form submission logic here
-      console.log('Long URL:', longUrl);
-      console.log('Short URL:', shortUrl);
+      setSubmitting(true);
+      await onSubmit({ longUrl, shortUrl }, event);
+      setSubmitting(false);
     },
-    [longUrl, shortUrl]
+    [longUrl, onSubmit, shortUrl]
   );
 
   return (
-    <div className={cn('flex flex-col gap-6', className)} {...props}>
+    <div className={cn('flex flex-col gap-6', className)}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create a Tiny URL</CardTitle>
@@ -43,6 +47,7 @@ export function UrlForm({
               <div className="grid gap-2">
                 <Label htmlFor="longUrl">Long URL</Label>
                 <Input
+                  disabled={submitting}
                   id="longUrl"
                   onChange={(e) => setLongUrl(e.target.value)}
                   required
@@ -53,13 +58,16 @@ export function UrlForm({
               <div className="grid gap-2">
                 <Label htmlFor="shortUrl">Short URL (optional)</Label>
                 <Input
+                  disabled={submitting}
                   id="shortUrl"
                   onChange={(e) => setShortUrl(e.target.value)}
                   type="text"
                   value={shortUrl}
                 />
               </div>
-              <Button type="submit">Submit</Button>
+              <Button disabled={submitting} type="submit">
+                Submit
+              </Button>
             </div>
           </form>
         </CardContent>
